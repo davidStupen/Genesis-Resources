@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -53,5 +54,17 @@ public class UserService {
         return users.stream().map(item -> new UserNotDetailsDTO(
                 item.getId(), item.getName(), item.getSurname()
         )).toList();
+    }
+
+    public ResponseEntity<?> updateUser(UserNotDetailsDTO notDetailsDTO) throws UserException {
+        UserDetailsDTO detailsDTO = (UserDetailsDTO) this.getUserById(notDetailsDTO.id(), true).getBody();
+        User user = new User();
+        user.setId(notDetailsDTO.id());
+        user.setName(notDetailsDTO.name());
+        user.setSurname(notDetailsDTO.surname());
+        user.setPersonId(detailsDTO.personId());
+        user.setUuid(detailsDTO.uuid());
+        this.userRepo.save(user);
+        return new ResponseEntity<>(notDetailsDTO, HttpStatus.OK);
     }
 }

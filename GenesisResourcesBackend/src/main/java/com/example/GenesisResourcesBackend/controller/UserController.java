@@ -9,10 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private UserService userService;
 
@@ -20,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody PostUserDTO postUserDTO) {
         try {
             this.userService.saveUser(postUserDTO);
@@ -29,7 +27,7 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable int id, @RequestParam(required = false, defaultValue = "false") boolean detail){
         try {
             return this.userService.getUserById(id, detail);
@@ -37,12 +35,20 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<?> getUsers(){
         try {
             return new ResponseEntity<>(this.userService.getUsers(), HttpStatus.OK);
         } catch (UserException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NO_CONTENT);
+        }
+    }
+    @PutMapping
+    public ResponseEntity<?> updateUser(@RequestBody UserNotDetailsDTO notDetailsDTO){
+        try {
+            return this.userService.updateUser(notDetailsDTO);
+        } catch (UserException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
