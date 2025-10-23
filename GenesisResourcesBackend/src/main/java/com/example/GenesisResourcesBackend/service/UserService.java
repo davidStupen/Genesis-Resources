@@ -67,4 +67,9 @@ public class UserService {
         this.userRepo.save(user);
         return new ResponseEntity<>(notDetailsDTO, HttpStatus.OK);
     }
+
+    public void deleteById(int id) throws UserException {
+        this.getUserById(id, false).getBody();
+        userRepo.deleteById(id);
+    }
 }
