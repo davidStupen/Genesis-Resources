@@ -2,10 +2,14 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import DeleteBtn from "../componens/DeleteBtn"
 import { Link } from "react-router-dom"
+import Search from "../componens/Search"
 const Home = () => {
   const [data, setData] = useState([])
   const [err, setErr] = useState("")
   const [con, setCon] = useState(false)
+  const handlerSearch = searchData => {
+    setData(searchData)
+  }
   useEffect(() => {
       const fetch = async () => {
         try{
@@ -31,6 +35,7 @@ const Home = () => {
       {
         data.length > 0 && (
           <div>
+            <Search search={handlerSearch}/>
             {
               data.map(item => <div key={item.id}>  
                                   <h3>Jmeno: {item.name}, Přijmení: {item.surname}</h3>
