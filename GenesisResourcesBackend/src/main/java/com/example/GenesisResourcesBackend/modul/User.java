@@ -17,9 +17,15 @@ public class User {
     @Column(nullable = false)
     private String name;
     private String surname;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 12)
     private String personId;
     @Column(unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String uuid;
+
+    public User(String name, String surname, String personId, String uuid) {
+        this.name = name;
+        this.surname = surname;
+        this.personId = personId;
+        this.uuid = uuid;
+    }
 }
