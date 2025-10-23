@@ -11,7 +11,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/update" element={<Update/>}/>
+        <Route path="/update/:currentId" element={<Update/>}/>
       </Routes>
     </div>
   )

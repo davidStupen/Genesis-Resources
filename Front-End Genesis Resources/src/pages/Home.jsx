@@ -34,7 +34,7 @@ const Home = () => {
               data.map(item => <div key={item.id}>  
                                   <h3>Jmeno: {item.name}, Přijmení: {item.surname}</h3>
                                   <DeleteBtn clickId={item.id} onclick={control}/>
-                                  <Link to={"/apdate"}><li>Upravit</li></Link>
+                                  <Link to={`/update/${item.id}`}><li>Upravit</li></Link>
                               </div>)
             }
           </div>
