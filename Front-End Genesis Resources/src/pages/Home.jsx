@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import DeleteBtn from "../componens/DeleteBtn"
+import { Link } from "react-router-dom"
 const Home = () => {
   const [data, setData] = useState([])
   const [err, setErr] = useState("")
@@ -33,6 +34,7 @@ const Home = () => {
               data.map(item => <div key={item.id}>  
                                   <h3>Jmeno: {item.name}, Přijmení: {item.surname}</h3>
                                   <DeleteBtn clickId={item.id} onclick={control}/>
+                                  <Link to={"/apdate"}><li>Upravit</li></Link>
                               </div>)
             }
           </div>

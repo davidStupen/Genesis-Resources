@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom"
 import Home from "./pages/Home"
 import Navbar from "./componens/Navbar"
+import Update from "./pages/Update"
 
 function App() {
   return(
@@ -10,6 +11,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/update" element={<Update/>}/>
       </Routes>
     </div>
   )
