@@ -14,7 +14,7 @@ const Update = () => {
     }))
   }
   const handlerFullNameSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault() 
     try{
       const response = await axios.put("http://localhost:8080/api/v1/users", fullName)
       navigate("/")
