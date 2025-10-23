@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -27,6 +26,10 @@ public class UserService {
     }
 
     public void saveUser(PostUserDTO postUserDTO) throws ValidationException, UserException {
+        if (postUserDTO.name() == null)
+            throw new UserException("Jmeno je null");
+        if (postUserDTO.personId() == null)
+            throw new UserException("přijmení je null");
         if (this.certificateAuthority.validationPersonId(postUserDTO.personId())){
             User user = this.userRepo.findByPersonId(postUserDTO.personId()).orElse(null);
             if (user != null)
