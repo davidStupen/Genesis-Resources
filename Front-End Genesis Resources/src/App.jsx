@@ -1,10 +1,16 @@
 import {Route, Routes} from "react-router-dom"
-import axios from "axios"
+import Home from "./pages/Home"
+import Navbar from "./componens/Navbar"
 
 function App() {
   return(
     <div>
-      
+      <div>
+        <Navbar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+      </Routes>
     </div>
   )
 }
