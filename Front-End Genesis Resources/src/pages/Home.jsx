@@ -7,15 +7,16 @@ const Home = () => {
   const [err, setErr] = useState("")
   const [con, setCon] = useState(false)
   useEffect(() => {
-    try{
       const fetch = async () => {
-        const response = await axios.get("http://localhost:8080/api/v1/users", data)
-        setData(response.data)
+        try{
+          const response = await axios.get("http://localhost:8080/api/v1/users", data)
+          setData(response.data)
+          setErr("")
+        } catch(e){
+          setErr("chyba serveru: " + e)
+        }
       }
       fetch()
-    } catch(e){
-      setErr(e)
-    }
   }, [con])
   const control = () => {
     if(con){
