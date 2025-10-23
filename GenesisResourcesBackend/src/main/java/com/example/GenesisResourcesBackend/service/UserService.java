@@ -58,7 +58,17 @@ public class UserService {
                 item.getId(), item.getName(), item.getSurname()
         )).toList();
     }
-
+    public ResponseEntity<List<UserNotDetailsDTO>> getUserByName(String name) {
+        List<User> users = this.userRepo.findByNameContaining(name);
+        if ( ! users.isEmpty() ){
+            List<UserNotDetailsDTO> notDetailsDTO = users.stream()
+                    .map(item -> new UserNotDetailsDTO(
+                            item.getId(), item.getName(), item.getSurname()
+                    )).toList();
+            return new ResponseEntity<>(notDetailsDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(List.of(), HttpStatus.NOT_FOUND);
+    }
     public ResponseEntity<?> updateUser(UserNotDetailsDTO notDetailsDTO) throws UserException {
         UserDetailsDTO detailsDTO = (UserDetailsDTO) this.getUserById(notDetailsDTO.id(), true).getBody();
         User user = new User();
@@ -75,4 +85,5 @@ public class UserService {
         this.getUserById(id, false).getBody();
         userRepo.deleteById(id);
     }
+
 }

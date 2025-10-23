@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -42,6 +44,10 @@ public class UserController {
         } catch (UserException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NO_CONTENT);
         }
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<UserNotDetailsDTO>> search(@RequestParam String name){
+        return this.userService.getUserByName(name);
     }
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody UserNotDetailsDTO notDetailsDTO){
