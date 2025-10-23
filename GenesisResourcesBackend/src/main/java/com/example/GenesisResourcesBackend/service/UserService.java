@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -43,5 +44,14 @@ public class UserService {
         }
         UserDetailsDTO details = new UserDetailsDTO(user.getId(), user.getName(), user.getSurname(), user.getPersonId(), user.getUuid());
         return new ResponseEntity<>(details, HttpStatus.OK);
+    }
+
+    public List<UserNotDetailsDTO> getUsers() throws UserException {
+        if (this.userRepo.count() == 0)
+            throw new UserException("sezname uživatelů je prázný");
+        List<User> users = this.userRepo.findAll();
+        return users.stream().map(item -> new UserNotDetailsDTO(
+                item.getId(), item.getName(), item.getSurname()
+        )).toList();
     }
 }
