@@ -1,1 +1,1 @@
-Frontend pro zachranu lidsva a udžení pořádku.
+Frontend pro zachranu lidu a udžení pořádku.
