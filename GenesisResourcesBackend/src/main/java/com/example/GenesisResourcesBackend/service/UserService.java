@@ -25,7 +25,7 @@ public class UserService {
         this.certificateAuthority = certificateAuthority;
     }
 
-    public void saveUser(PostUserDTO postUserDTO) throws ValidationException, UserException {
+    public PostUserDTO saveUser(PostUserDTO postUserDTO) throws ValidationException, UserException {
         if (postUserDTO.name() == null)
             throw new UserException("Jmeno je null");
         if (postUserDTO.personId() == null)
@@ -37,7 +37,9 @@ public class UserService {
             String uuid = UUID.randomUUID().toString();
             User userForDB = new User(postUserDTO.name(), postUserDTO.surname(), postUserDTO.personId(), uuid);
             this.userRepo.save(userForDB);
+            return postUserDTO;
         }
+        return null;
     }
 
     public ResponseEntity<?> getUserById(int id, boolean detail) throws UserException {
