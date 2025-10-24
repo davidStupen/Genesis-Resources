@@ -10,6 +10,7 @@ import com.example.GenesisResourcesBackend.service.certificate.CertificateAuthor
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -71,8 +72,10 @@ class UserServiceTest {
         assertFalse(detailsDTOS.isEmpty());
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"David", "Filip"})
     void getUserByName() {
+
     }
 
     @Test
