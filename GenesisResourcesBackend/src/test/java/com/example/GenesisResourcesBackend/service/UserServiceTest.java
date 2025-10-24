@@ -92,6 +92,7 @@ class UserServiceTest {
     @Test
     void deleteById() throws ValidationException, UserException {
         this.userService.saveUser(new PostUserDTO("David", "neco", "sL4gN9dC3bXz"));
-
+        UserNotDetailsDTO notDetailsDTO = this.userService.deleteById(1);
+        assertNotNull(notDetailsDTO);
     }
 }
