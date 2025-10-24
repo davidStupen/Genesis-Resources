@@ -8,6 +8,7 @@ import com.example.GenesisResourcesBackend.modul.dto.UserDetailsDTO;
 import com.example.GenesisResourcesBackend.modul.dto.UserNotDetailsDTO;
 import com.example.GenesisResourcesBackend.repository.UserRepo;
 import com.example.GenesisResourcesBackend.service.certificate.CertificateAuthority;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserService {
     private UserRepo userRepo;
     private CertificateAuthority certificateAuthority;
@@ -46,9 +48,11 @@ public class UserService {
         User user = this.userRepo.findById(id).orElseThrow(() -> new UserException("zadané id: " + id + " neexistuje!!!!"));
         if (!detail) {
             UserNotDetailsDTO notDetails = new UserNotDetailsDTO(user.getId(), user.getName(), user.getSurname());
+            log.info("select jednoho uživatele " + notDetails);
             return new ResponseEntity<>(notDetails, HttpStatus.OK);
         }
         UserDetailsDTO details = new UserDetailsDTO(user.getId(), user.getName(), user.getSurname(), user.getPersonId(), user.getUuid());
+        log.info("select jednoho uživatele " + details);
         return new ResponseEntity<>(details, HttpStatus.OK);
     }
 
