@@ -82,7 +82,11 @@ class UserServiceTest {
     }
 
     @Test
-    void updateUser() {
+    void updateUser() throws ValidationException, UserException {
+        this.userService.saveUser(new PostUserDTO("David", "neco", "sL4gN9dC3bXz"));
+        this.userService.updateUser(new UserNotDetailsDTO(1, "Filip", "Novotný"));
+        UserNotDetailsDTO notDetailsDTO = (UserNotDetailsDTO) this.userService.getUserById(1, false).getBody();
+        assertEquals("Filip", notDetailsDTO.name());
     }
 
     @Test
