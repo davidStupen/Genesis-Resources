@@ -74,8 +74,11 @@ class UserServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"David", "Filip"})
-    void getUserByName() {
-
+    void getUserByName(String name) throws ValidationException, UserException {
+        this.userService.saveUser(new PostUserDTO(name, "neco", "sL4gN9dC3bXz"));
+        this.userService.saveUser(new PostUserDTO(name, "Novotný", "wV6eH1fK7qZj"));
+        List<UserNotDetailsDTO> notDetailsDTOS = this.userService.getUserByName(name).getBody();
+        assertFalse(notDetailsDTOS.isEmpty());
     }
 
     @Test
