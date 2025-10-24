@@ -81,9 +81,10 @@ public class UserService {
         return new ResponseEntity<>(notDetailsDTO, HttpStatus.OK);
     }
 
-    public void deleteById(int id) throws UserException {
-        this.getUserById(id, false).getBody();
+    public UserNotDetailsDTO deleteById(int id) throws UserException {
+        UserNotDetailsDTO notDetailsDTO = (UserNotDetailsDTO) this.getUserById(id, false).getBody();
         userRepo.deleteById(id);
+        return notDetailsDTO;
     }
 
 }
