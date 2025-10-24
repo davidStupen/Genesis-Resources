@@ -28,6 +28,8 @@ public class UserController {
             return new ResponseEntity<>(postUserDTO, HttpStatus.CREATED);
         } catch (ValidationException | UserException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (NullPointerException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/{id}")
