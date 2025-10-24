@@ -39,12 +39,9 @@ class UserServiceTest {
 //      sL4gN9dC3bXz
     //DataIntegrityViolationException
     @Test
-    void saveUserTrue() {
-        this.userRepo.saveAll(List.of(
-                new User("David", "Stupen", "rU8nA9eT2bYh", UUID.randomUUID().toString()),
-                new User("Jarda", "Jagr", "wV6eH1fK7qZj", UUID.randomUUID().toString())
-        ));
-        assertTrue(this.userRepo.count() > 0);
+    void saveUserNotNull() throws ValidationException, UserException {
+        PostUserDTO postUserDTO = this.userService.saveUser(new PostUserDTO("David", "Stupen", "sL4gN9dC3bXz"));
+        assertNotNull(postUserDTO);
     }
     @Test
     void saveThrowException(){
