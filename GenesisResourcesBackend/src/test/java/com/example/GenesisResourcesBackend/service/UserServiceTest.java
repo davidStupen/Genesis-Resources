@@ -82,14 +82,16 @@ class UserServiceTest {
     }
 
     @Test
+    @Sql(statements = "alter table users alter column id restart with 1")
     void updateUser() throws ValidationException, UserException {
-        this.userService.saveUser(new PostUserDTO("David", "neco", "sL4gN9dC3bXz"));
+        this.userRepo.save(new User("David", "Stupen", "rU8nA9eT2bYh", UUID.randomUUID().toString()));
         this.userService.updateUser(new UserNotDetailsDTO(1, "Filip", "Novotný"));
         UserNotDetailsDTO notDetailsDTO = (UserNotDetailsDTO) this.userService.getUserById(1, false).getBody();
         assertEquals("Filip", notDetailsDTO.name());
     }
 
     @Test
+    @Sql(statements = "alter table users alter column id restart with 1")
     void deleteById() throws ValidationException, UserException {
         this.userService.saveUser(new PostUserDTO("David", "neco", "sL4gN9dC3bXz"));
         UserNotDetailsDTO notDetailsDTO = this.userService.deleteById(1);
