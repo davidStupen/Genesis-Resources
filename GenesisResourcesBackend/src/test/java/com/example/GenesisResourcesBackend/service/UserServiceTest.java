@@ -1,7 +1,9 @@
 package com.example.GenesisResourcesBackend.service;
 
 import com.example.GenesisResourcesBackend.exception.UserException;
+import com.example.GenesisResourcesBackend.exception.ValidationException;
 import com.example.GenesisResourcesBackend.modul.User;
+import com.example.GenesisResourcesBackend.modul.dto.PostUserDTO;
 import com.example.GenesisResourcesBackend.modul.dto.UserNotDetailsDTO;
 import com.example.GenesisResourcesBackend.repository.UserRepo;
 import com.example.GenesisResourcesBackend.service.certificate.CertificateAuthority;
@@ -63,7 +65,10 @@ class UserServiceTest {
     }
 
     @Test
-    void getUsers() {
+    void getUsers() throws UserException, ValidationException {
+        this.userService.saveUser(new PostUserDTO("David", "Stupen", "sL4gN9dC3bXz"));
+        List<UserNotDetailsDTO> detailsDTOS = this.userService.getUsers();
+        assertFalse(detailsDTOS.isEmpty());
     }
 
     @Test
