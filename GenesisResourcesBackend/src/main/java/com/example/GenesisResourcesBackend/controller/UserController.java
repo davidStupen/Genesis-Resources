@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @Slf4j
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://my-bucket-genesesis.s3-website.eu-north-1.amazonaws.com")
 public class UserController {
     private UserService userService;
 
