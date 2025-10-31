@@ -3,7 +3,7 @@ import axios from "axios"
 const DeleteBtn = (props) => {
   const handlerDelete = async () => {
     try{
-      await axios.delete(`http://13.48.48.105:8080/api/v1/users/${props.clickId}`)
+      await axios.delete(`http://13.60.230.45:8080/api/v1/users/${props.clickId}`)
       props.onclick()
     } catch(e){
       console.error(e)
