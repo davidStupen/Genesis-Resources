@@ -16,7 +16,7 @@ const Update = () => {
   const handlerFullNameSubmit = async (e) => {
     e.preventDefault() 
     try{
-      const response = await axios.put("http://localhost:8080/api/v1/users", fullName)
+      const response = await axios.put("http://13.60.104.107:8080/api/v1/users", fullName)
       navigate("/")
     } catch(err){
       console.error(err)
@@ -26,7 +26,7 @@ const Update = () => {
     console.log(currentId)
     try {
       const fetch = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/users/${currentId}`)
+        const response = await axios.get(`http://13.60.104.107:8080/api/v1/users/${currentId}`)
         setFullName({id:currentId, name:response.data.name, surname:response.data.surname})
       }
       fetch()

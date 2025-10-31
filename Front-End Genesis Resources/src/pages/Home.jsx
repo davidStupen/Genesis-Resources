@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
       const fetch = async () => {
         try{
-          const response = await axios.get("http://localhost:8080/api/v1/users", data)
+          const response = await axios.get("http://13.60.104.107:8080/api/v1/users", data)
           setData(response.data)
           setErr("")
         } catch(e){
