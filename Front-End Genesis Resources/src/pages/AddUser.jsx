@@ -16,7 +16,7 @@ const AddUser = () => {
   const handlerDataSubmit = async (e) => {
     e.preventDefault()
     try{
-      const response = await axios.post("http://13.60.104.107:8080/api/v1/users", data)
+      const response = await axios.post("http://13.48.48.105:8080/api/v1/users", data)
       setData(response.data)
       setErr("")
       navigate("/")

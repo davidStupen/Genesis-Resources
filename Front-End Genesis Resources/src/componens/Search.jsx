@@ -7,7 +7,7 @@ const Search = (props) => {
   const handlerSearch = async e => {
     setSearch(e.target.value)
       if(search.length > 2){
-        const response = await axios.get(`http://13.60.104.107:8080/api/v1/users/search?name=${search}`)
+        const response = await axios.get(`http://13.48.48.105:8080/api/v1/users/search?name=${search}`)
         props.search(response.data)
       } else{
         props.search(allData)
@@ -15,7 +15,7 @@ const Search = (props) => {
   }
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get("http://13.60.104.107:8080/api/v1/users")
+      const response = await axios.get("http://13.48.48.105:8080/api/v1/users")
         setAllData(response.data)
     }
     fetch()
